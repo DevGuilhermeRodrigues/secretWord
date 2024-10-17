@@ -1,0 +1,19 @@
+div p {
+    font-size: 1.1em;
+    color: yellow;
+}
+
+div button {
+    font-size: 1.2em;
+    padding: .5em 1.4em;
+    background-color: #0e187e;
+    color: white;
+    border: 1px solid white;
+    border-radius: 25px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+div button:hover {
+    background-color: #1827c5;
+}
