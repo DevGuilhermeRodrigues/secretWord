@@ -1,9 +1,12 @@
 import React from 'react'
 import './Game.css'
 
-export default function Game() {
+export default function Game({verifyLetter}) {
   return (
-    <div>Game</div>
+    <div>
+      <h1>Game</h1>
+      <button onClick={verifyLetter}>Recomeçar jogo</button>
+    </div>
   )
 }
 

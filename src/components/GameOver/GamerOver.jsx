@@ -1,7 +1,10 @@
 import React from 'react'
 
-export default function GamerOver() {
+export default function GamerOver({retry}) {
   return (
-    <div>GamerOver</div>
+    <div>
+      <h1>Gamer Over</h1>
+      <button onClick={retry}>Iniciar jogo</button>
+    </div>
   )
 }
