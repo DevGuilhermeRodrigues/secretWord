@@ -26,6 +26,15 @@ function App() {
   const [pickedCategory, setPickedCategory] = useState('')
   const [letters, setLetters] = useState([])
 
+  // Letras advinhadas
+  const [guessedLetters, setGuessedLetters] = useState([])
+
+  // Letras erradas
+  const [wrongLetters, setWrongLetters] = useState([])
+
+  const [guesses, setGuesses] = useState(3)
+  const [score, setScore] = useState(0)
+
   const pickWordAndCategory = () => {
     const categories = Object.keys(words);
     const category = categories[Math.floor(Math.random() * Object.keys(categories).length)]
@@ -44,17 +53,27 @@ function App() {
     // FIll States
     setPickedWord(word)
     setPickedCategory(category)
-    setLetters(letters)
-     
-    console.log(letters)
-    console.log(category, word)
-    console.log(wordLetter)
+    setLetters(wordLetter)
 
     setGameStage(stages[1].name)
   }
 
-  const verifyLetter = () => {
-    setGameStage(stages[2].name)
+  const verifyLetter = (letter) => {
+    const normalizedLetter = letter.toLowerCase()
+
+    if(guessedLetters.includes(normalizedLetter) || wrongLetters.includes(normalizedLetter)) {
+      return
+    }
+
+    if(letters.includes(normalizedLetter)){
+      setGuessedLetters((actualGuessedLetters) => [
+        ...actualGuessedLetters, normalizedLetter
+      ])
+    } else {
+      setWrongLetters((actualWrongLetters) => [
+        ...actualWrongLetters, normalizedLetter
+      ])
+    }
   }
 
   const retry = () => {
@@ -64,7 +83,16 @@ function App() {
   return (
     <div className="App">
       {gameStage === 'start' && <StartScreen startGame={startGame} />}
-      {gameStage === 'game' && <Game verifyLetter={verifyLetter} />}
+      {gameStage === 'game' && <Game 
+        verifyLetter={verifyLetter}
+        pickedWord={pickedWord}
+        pickedCategory={pickedCategory}
+        letters={letters}
+        guessedLetters={guessedLetters}
+        wrongLetters={wrongLetters}
+        guesses={guesses}
+        score={score}
+        />}
       {gameStage === 'end' && <GamerOver retry={retry} />}
     </div>
   )

@@ -45,8 +45,13 @@
     height: 50px;
     font-size: 2em;
     margin-right: 1em;
+    text-align: center;
 }
 
 .wrongLettersContainer {
     margin-top: 2em;
+}
+
+.wrongLettersContainer p, span {
+    color: white;
 }
